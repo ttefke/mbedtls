@@ -13,8 +13,6 @@ extern int bl_rand();
 int mbedtls_hardware_poll(void *data,
     unsigned char *output, size_t len, size_t *olen)
 {
-    printf("Hardware entropy poll called!\r\n");
-
     ((void) data);
     size_t i;
     *olen = 0;
