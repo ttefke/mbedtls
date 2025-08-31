@@ -40,7 +40,8 @@ typedef struct mbedtls_timing_delay_context {
 } mbedtls_timing_delay_context;
 
 #else  /* MBEDTLS_TIMING_ALT */
-#include "timing_alt.h"
+//#include "timing_alt.h"
+#include "bl602_port.h"
 #endif /* MBEDTLS_TIMING_ALT */
 
 /* Internal use */
