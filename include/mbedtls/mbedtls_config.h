@@ -350,7 +350,7 @@
  * You will need to provide a header "timing_alt.h" and an implementation at
  * compile time.
  */
-//#define MBEDTLS_TIMING_ALT
+#define MBEDTLS_TIMING_ALT
 
 /**
  * \def MBEDTLS_AES_ALT
@@ -3773,7 +3773,7 @@
  *
  * Module:  library/timing.c
  */
-//#define MBEDTLS_TIMING_C
+#define MBEDTLS_TIMING_C
 
 /**
  * \def MBEDTLS_VERSION_C

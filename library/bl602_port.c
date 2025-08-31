@@ -6,6 +6,9 @@
 #include <mbedtls/error.h>
 #include <mbedtls/net_sockets.h>
 
+#include <bl_timer.h>
+#include "bl602_port.h"
+
 // Use hardware TRNG
 
 extern int bl_rand();
@@ -249,4 +252,51 @@ void mbedtls_net_close(mbedtls_net_context *ctx)
 void mbedtls_net_free(mbedtls_net_context *ctx)
 {
     mbedtls_net_terminate(ctx, true);
+}
+
+// Timing code
+int32_t get_current_time_ms()
+{
+    return bl_timer_now_us() / 1000;
+}
+
+unsigned long mbedtls_timing_get_timer(struct mbedtls_timing_hr_time *val, int reset)
+{
+    if (reset) {
+        val->start_time = get_current_time_ms();
+        return 0;
+    } else {
+        return get_current_time_ms() - val->start_time;
+    }
+}
+
+void mbedtls_timing_set_delay(void *data, uint32_t int_ms, uint32_t fin_ms)
+{
+    mbedtls_timing_delay_context *ctx = (mbedtls_timing_delay_context *) data;
+    ctx->int_ms = int_ms;
+    ctx->fin_ms = fin_ms;
+
+    if (fin_ms != 0) {
+        mbedtls_timing_get_timer(&ctx->timer, 1);
+    }
+}
+
+int mbedtls_timing_get_delay(void *data)
+{
+    mbedtls_timing_delay_context *ctx = (mbedtls_timing_delay_context *) data;
+    unsigned long elapsed_ms;
+
+    if (ctx->fin_ms == 0) {
+        return -1;
+    }
+
+    elapsed_ms = mbedtls_timing_get_timer(&ctx->timer, 0);
+
+    if (elapsed_ms >= ctx->fin_ms) {
+        return 2;
+    } else if (elapsed_ms >= ctx->int_ms) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
