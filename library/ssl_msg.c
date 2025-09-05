@@ -4002,6 +4002,7 @@ static int ssl_parse_record_header(mbedtls_ssl_context const *ssl,
             return MBEDTLS_ERR_SSL_INVALID_RECORD;
         }
 
+#if 0
         /* Records from other, non-matching epochs are silently discarded.
          * (The case of same-port Client reconnects must be considered in
          *  the caller). */
@@ -4019,6 +4020,7 @@ static int ssl_parse_record_header(mbedtls_ssl_context const *ssl,
 
             return MBEDTLS_ERR_SSL_UNEXPECTED_RECORD;
         }
+#endif
 #if defined(MBEDTLS_SSL_DTLS_ANTI_REPLAY)
         /* For records from the correct epoch, check whether their
          * sequence number has been seen before. */
