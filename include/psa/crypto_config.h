@@ -40,11 +40,19 @@
 
 #define PSA_WANT_ALG_CBC_NO_PADDING             1
 #define PSA_WANT_ALG_CBC_PKCS7                  1
+
+#ifdef MBEDTLS_CCM_C
 #define PSA_WANT_ALG_CCM                        1
 #define PSA_WANT_ALG_CCM_STAR_NO_TAG            1
+#endif
+
 #define PSA_WANT_ALG_CMAC                       1
 #define PSA_WANT_ALG_CFB                        1
+
+#ifdef MBEDTLS_CHACHAPOLY_C
 #define PSA_WANT_ALG_CHACHA20_POLY1305          1
+#endif
+
 #define PSA_WANT_ALG_CTR                        1
 #define PSA_WANT_ALG_DETERMINISTIC_ECDSA        1
 #define PSA_WANT_ALG_ECB_NO_PADDING             1
@@ -66,7 +74,11 @@
 #define PSA_WANT_ALG_RSA_PKCS1V15_CRYPT         1
 #define PSA_WANT_ALG_RSA_PKCS1V15_SIGN          1
 #define PSA_WANT_ALG_RSA_PSS                    1
+
+#ifdef MBEDTLS_SHA1_C
 #define PSA_WANT_ALG_SHA_1                      1
+#endif
+
 #define PSA_WANT_ALG_SHA_224                    1
 #define PSA_WANT_ALG_SHA_256                    1
 #define PSA_WANT_ALG_SHA_384                    1
@@ -106,8 +118,15 @@
 #define PSA_WANT_KEY_TYPE_PASSWORD_HASH         1
 #define PSA_WANT_KEY_TYPE_HMAC                  1
 #define PSA_WANT_KEY_TYPE_AES                   1
+
+#ifdef MBEDTLS_ARIA_C
 #define PSA_WANT_KEY_TYPE_ARIA                  1
+#endif
+
+#ifdef MBEDTLS_CAMELLIA_C
 #define PSA_WANT_KEY_TYPE_CAMELLIA              1
+#endif
+
 #define PSA_WANT_KEY_TYPE_CHACHA20              1
 #define PSA_WANT_KEY_TYPE_DES                   1
 //#define PSA_WANT_KEY_TYPE_ECC_KEY_PAIR          1 /* Deprecated */
