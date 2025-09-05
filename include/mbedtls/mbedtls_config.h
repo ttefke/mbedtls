@@ -907,7 +907,7 @@
  *             See dhm.h for more details.
  *
  */
-#define MBEDTLS_KEY_EXCHANGE_DHE_PSK_ENABLED
+//#define MBEDTLS_KEY_EXCHANGE_DHE_PSK_ENABLED
 
 /**
  * \def MBEDTLS_KEY_EXCHANGE_ECDHE_PSK_ENABLED
@@ -2635,7 +2635,7 @@
  * This module enables the AES-CCM ciphersuites, if other requisites are
  * enabled as well.
  */
-//#define MBEDTLS_CCM_C
+#define MBEDTLS_CCM_C
 
 /**
  * \def MBEDTLS_CHACHA20_C
