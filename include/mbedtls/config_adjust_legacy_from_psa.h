@@ -576,7 +576,7 @@
 #endif /* !MBEDTLS_PSA_ACCEL_ALG_RSA_PSS */
 #endif /* PSA_WANT_ALG_RSA_PSS */
 
-#if defined(PSA_WANT_ALG_SHA_1) && !defined(MBEDTLS_PSA_ACCEL_ALG_SHA_1)
+#if defined(PSA_WANT_ALG_SHA_1) && !defined(MBEDTLS_PSA_ACCEL_ALG_SHA_1) && defined(MBEDTLS_SHA1_C)
 #define MBEDTLS_PSA_BUILTIN_ALG_SHA_1 1
 #define MBEDTLS_SHA1_C
 #endif
