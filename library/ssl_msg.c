@@ -3816,7 +3816,7 @@ static int ssl_parse_record_header(mbedtls_ssl_context const *ssl,
 
     size_t const rec_hdr_ctr_len        = 8;
 #if defined(MBEDTLS_SSL_PROTO_DTLS)
-#if 0
+#ifndef DTLS_DISABLE_ANTI_REPLAY
     uint32_t     rec_epoch;
 #endif
     size_t const rec_hdr_ctr_offset     = rec_hdr_version_offset +
@@ -3974,7 +3974,7 @@ static int ssl_parse_record_header(mbedtls_ssl_context const *ssl,
      */
 #if defined(MBEDTLS_SSL_PROTO_DTLS)
     if (ssl->conf->transport == MBEDTLS_SSL_TRANSPORT_DATAGRAM) {
-#if 0
+#ifndef DTLS_DISABLE_ANTI_REPLAY
         rec_epoch = MBEDTLS_GET_UINT16_BE(rec->ctr, 0);
 #endif
         /* Check that the datagram is large enough to contain a record
@@ -3988,7 +3988,7 @@ static int ssl_parse_record_header(mbedtls_ssl_context const *ssl,
             return MBEDTLS_ERR_SSL_INVALID_RECORD;
         }
 
-#if 0
+#ifndef DTLS_DISABLE_ANTI_REPLAY
         /* Records from other, non-matching epochs are silently discarded.
          * (The case of same-port Client reconnects must be considered in
          *  the caller). */
