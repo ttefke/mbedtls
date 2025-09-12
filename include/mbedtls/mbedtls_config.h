@@ -1991,7 +1991,9 @@
  *
  * Comment this to disable anti-replay in DTLS.
  */
-//#define MBEDTLS_SSL_DTLS_ANTI_REPLAY
+#ifndef DTLS_DISABLE_ANTI_REPLAY
+#define MBEDTLS_SSL_DTLS_ANTI_REPLAY
+#endif
 
 /**
  * \def MBEDTLS_SSL_DTLS_HELLO_VERIFY
